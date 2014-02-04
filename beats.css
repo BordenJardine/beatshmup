@@ -3,46 +3,86 @@ td {
 	width: 40px;
 }
 
+td.s0, td.s8 {
+	background-color: #555;
+}
+
+td.s4, td.s12 {
+	background-color: #444;
+}
+
 tr:nth-child(1) td {
-	background-color: #ff8888;
+	border: 2px solid #ff8888;
 }
 
 tr:nth-child(1) td.active {
+	background-color: #ff8888;
+}
+
+tr:nth-child(1) td.indicated {
+	border-color:#ffbbbb;
+}
+
+tr:nth-child(1) td.indicated.active {
 	background-color: #ffbbbb;
 }
 
+
 tr:nth-child(2) td {
-	background-color: #66ff77;
+	border: 2px solid #66ff77;
 }
 
 tr:nth-child(2) td.active {
+	background-color: #66ff77;
+}
+
+tr:nth-child(2) td.indicated {
+	border-color:#bbffbb;
+}
+
+tr:nth-child(2) td.indicated.active {
 	background-color: #bbffbb;
 }
 
+
 tr:nth-child(3) td {
-	background-color: #aa88ff;
+	border: 2px solid #aa88ff;
 }
 
 tr:nth-child(3) td.active {
+	background-color: #aa88ff;
+}
+
+tr:nth-child(3) td.indicated {
+	border-color:#ccaaff;
+}
+
+tr:nth-child(3) td.indicated.active {
 	background-color: #ccaaff;
 }
 
+
 tr:nth-child(4) td {
-	background-color: #6688ff;
+	border: 2px solid #6688ff;
 }
 
 tr:nth-child(4) td.active {
-	background-color: #aaccff;
+	background-color: #6688ff;
 }
 
-tr td.indicator  {
-	background-color: transparent;
+tr:nth-child(4) td.indicated {
+	border-color:#aaccff;
+}
+
+tr:nth-child(4) td.indicated.active {
+	background-color: #aaccff;
 }
 
 
 tr td:nth-child(1) {
 	width: 50px;
 	background-color: transparent;
+	border-color: transparent;
 }
 
 tr td.active {

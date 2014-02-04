@@ -1,8 +1,8 @@
 var createDrumGrid = function(instruments) {
-	for(var i = 0; i <= instruments.length; i++) {
+	for(var i = 0; i < instruments.length; i++) {
 		var row = document.querySelector("table").insertRow(-1);
 	
-		var instrument = (i < instruments.length) ? instruments[i].name : 'indicator';
+		var instrument = instruments[i].name;
 		var cell = row.insertCell(-1);
 		cell.innerHTML = instrument;
 
@@ -10,14 +10,12 @@ var createDrumGrid = function(instruments) {
 			var cell = row.insertCell(-1);
 			cell.setAttribute('class', instrument + ' i' + i + ' s' + step);
 
-			if(i < instruments.length) {
-				(function(i, step) {
-					cell.onclick = function(e) {
-						toggleSoundInMatrix(step, instruments[i].buffer);
-						toggleClass(e.target, 'active');
-					};
-				})(i, step);
-			}
+			(function(i, step) {
+				cell.onclick = function(e) {
+					toggleSoundInMatrix(step, instruments[i].buffer);
+					toggleClass(e.target, 'active');
+				};
+			})(i, step);
 		}
 	}
 };
@@ -41,12 +39,16 @@ var addClass = function(targetElement, cssClass) {
 };
 
 
-var advanceIndicator = function(lastStep, nextStep) {
-	if(lastStep >= 0) {
-		lastEl = document.querySelector('.indicator.s' + lastStep);
-		removeClass(lastEl, 'active');
+var advanceIndicator = function(lastStep, newStep) {
+	function modifyIndicated(step, modification) {
+		els = document.querySelectorAll('.s' + step);
+		for(var i = 0; i < els.length; i++) {
+			modification(els[i], 'indicated');
+		}
 	}
 
-	nextEl = document.querySelector('.indicator.s' + nextStep);
-	addClass(nextEl, 'active');
+	if(lastStep >= 0) {
+		modifyIndicated(lastStep, removeClass);
+	}
+	modifyIndicated(newStep, addClass);
 };
