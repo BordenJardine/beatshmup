@@ -23,7 +23,7 @@ var playSoundsAt = function(step, time) {
 		var source = audioContext.createBufferSource();
 		source.buffer = soundsToPlay[i];
 		source.connect(audioContext.destination);
-		source.noteOn(0);
+		source.start(time);
 	}
 };
 

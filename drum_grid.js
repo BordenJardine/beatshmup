@@ -40,7 +40,7 @@ var addClass = function(targetElement, cssClass) {
 
 
 var advanceIndicator = function(lastStep, newStep) {
-	function modifyIndicated(step, modification) {
+	var modifyIndicated = function(step, modification) {
 		els = document.querySelectorAll('.s' + step);
 		for(var i = 0; i < els.length; i++) {
 			modification(els[i], 'indicated');
