@@ -10,7 +10,8 @@ window.requestAnimFrame = (function() {
 })();
 
 window.AudioContext = window.AudioContext || window.webkitAudioContext;
-audioContext = new AudioContext();
+
+var audioContext = new AudioContext();
 
 var instruments = [
 	{ name: 'kick', path: 'media/sounds/808_kick_short.mp3'},
@@ -18,10 +19,12 @@ var instruments = [
 	{ name: 'hh_closed', path: 'media/sounds/808_hat_closed.mp3'},
 	{ name: 'hh_open', path: 'media/sounds/808_hat_long.mp3'},
 ];
+
 var steps = 16;
 
-var stepMatrix = initStepMatrix(steps);
+var sampler = new Sampler({audioContext: audioContext, instruments: instruments, steps: steps});
+var grid = new DrumGrid({instruments: instruments, steps: steps, sampler: sampler});
+var scheduler = new Scheduler({audioContext: audioContext, grid: grid, instruments: instruments, steps: steps});
 
-window.addEventListener("load", function() {bufferInstruments(instruments)});
-window.addEventListener("load", function() {createDrumGrid(instruments)});
-window.addEventListener("load", initScheduler);
+window.addEventListener("load", grid.createDrumGrid);
+window.addEventListener("load", scheduler.initScheduler);
