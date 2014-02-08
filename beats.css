@@ -92,4 +92,5 @@ tr td.active {
 #beats {
 	margin: 0 auto;
 	border-spacing: 3px;
+	text-align: right;
 }
