@@ -1,6 +1,6 @@
 var DrumGrid = function(options) {
 	instruments = options.instruments;
-	sampler = options.sampler;
+	clickCallback = options.clickCallback;
 	steps = options.steps;
 
 	this.advanceIndicator = function(lastStep, newStep) {
@@ -32,7 +32,7 @@ var DrumGrid = function(options) {
 
 				(function(i, step) {
 					cell.onclick = function(e) {
-						sampler.toggleSoundInMatrix(step, instruments[i].buffer);
+						clickCallback(step, instruments[i].buffer);
 						toggleClass(e.target, 'active');
 					};
 				})(i, step);

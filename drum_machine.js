@@ -22,9 +22,25 @@ var instruments = [
 
 var steps = 16;
 
-var sampler = new Sampler({audioContext: audioContext, instruments: instruments, steps: steps});
-var grid = new DrumGrid({instruments: instruments, steps: steps, sampler: sampler});
-var scheduler = new Scheduler({audioContext: audioContext, grid: grid, instruments: instruments, steps: steps});
+var sampler = new Sampler({
+	audioContext: audioContext,
+	instruments: instruments,
+	steps: steps
+});
+
+var grid = new DrumGrid({
+	instruments: instruments,
+	steps: steps,
+	clickCallback: sampler.toggleSoundInMatrix
+});
+
+var scheduler = new Scheduler({
+	audioContext: audioContext,
+	instruments: instruments,
+	steps: steps,
+	advanceCallback: grid.advanceIndicator,
+	stepCallback: sampler.playSoundsAt
+});
 
 window.addEventListener("load", grid.createDrumGrid);
 window.addEventListener("load", scheduler.initScheduler);

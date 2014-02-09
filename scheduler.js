@@ -1,4 +1,6 @@
 var Scheduler = function(options) {
+	var advanceCallback = options.advanceCallback;
+	var stepCallback = options.stepCallback;
 	var audioContext = options.audioContext;
 	var grid = options.grid;
 
@@ -50,7 +52,7 @@ var Scheduler = function(options) {
 
 		// We only need to draw if the note has moved.
 		if (lastStep != currentNote) {
-			grid.advanceIndicator(lastStep, currentNote);
+			advanceCallback(lastStep, currentNote);
 			lastStep = currentNote;
 		}
 
@@ -71,7 +73,7 @@ var Scheduler = function(options) {
 
 	var scheduleSounds = function( stepNumber, time ) {
 		stepQueue.push( { note: stepNumber, time: time } );
-		sampler.playSoundsAt(stepNumber, time);
+		stepCallback(stepNumber, time);
 	}
 
 
