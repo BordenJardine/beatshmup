@@ -5,25 +5,27 @@ var Sampler = function(options) {
 
 	var stepMatrix = [];
 
+	this.getStepMatrix = function() { return stepMatrix };
+
 	this.playSoundsAt = function(step, time) {
-		var buffersToPlay = stepMatrix[step].buffers
+		var instrumentsToPlay = stepMatrix[step].instruments
 		
-		for(var i = buffersToPlay.length - 1; i >= 0; i--) {
+		for(var i = instrumentsToPlay.length - 1; i >= 0; i--) {
 			var source = audioContext.createBufferSource();
-			source.buffer = buffersToPlay[i];
+			source.buffer = instrumentsToPlay[i].buffer;
 			source.connect(audioContext.destination);
 			source.start(time);
 		}
 	};
 
 
-	this.toggleSoundInMatrix = function(step, buffer) {
-		var toPlay = stepMatrix[step].buffers;
+	this.toggleSoundInMatrix = function(step, instrument) {
+		var toPlay = stepMatrix[step].instruments;
 		
 		for(i in toPlay) {
-			if(toPlay[i] == buffer) return toPlay.splice(i, 1);
+			if(toPlay[i].name == instrument.name) return toPlay.splice(i, 1);
 		}
-		toPlay.push(buffer);
+		toPlay.push(instrument);
 	};
 
 
@@ -50,7 +52,7 @@ var Sampler = function(options) {
 
 
 	var initStepMatrix = function() {
-		for(var i = steps; i >= 0; i--) stepMatrix.push({buffers: []});
+		for(var i = steps; i >= 0; i--) stepMatrix.push({instruments: []});
 	};
 
 

@@ -32,7 +32,7 @@ var DrumGrid = function(options) {
 
 				(function(i, step) {
 					cell.onclick = function(e) {
-						clickCallback(step, instruments[i].buffer);
+						clickCallback(step, instruments[i]);
 						toggleClass(e.target, 'active');
 					};
 				})(i, step);
