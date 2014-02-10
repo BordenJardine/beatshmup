@@ -1,6 +1,6 @@
 var Scheduler = function(options) {
 	var advanceCallback = options.advanceCallback;
-	var stepCallback = options.stepCallback;
+	var scheduleCallback = options.scheduleCallback;
 	var audioContext = options.audioContext;
 	var grid = options.grid;
 
@@ -73,7 +73,7 @@ var Scheduler = function(options) {
 
 	var scheduleSounds = function( stepNumber, time ) {
 		stepQueue.push( { note: stepNumber, time: time } );
-		stepCallback(stepNumber, time);
+		scheduleCallback(stepNumber, time);
 	}
 
 

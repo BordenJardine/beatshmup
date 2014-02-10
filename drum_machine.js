@@ -38,8 +38,11 @@ var scheduler = new Scheduler({
 	audioContext: audioContext,
 	instruments: instruments,
 	steps: steps,
-	advanceCallback: grid.advanceIndicator,
-	stepCallback: sampler.playSoundsAt
+	advanceCallback: function(lastStep, currentStep) {
+		grid.advanceIndicator(lastStep, currentStep);
+		sampler.fireStepEvents(currentStep);
+	},
+	scheduleCallback: sampler.playSoundsAt
 });
 
 window.addEventListener("load", grid.createDrumGrid);

@@ -7,6 +7,7 @@ var Sampler = function(options) {
 
 	this.getStepMatrix = function() { return stepMatrix };
 
+
 	this.playSoundsAt = function(step, time) {
 		var instrumentsToPlay = stepMatrix[step].instruments
 		
@@ -15,6 +16,21 @@ var Sampler = function(options) {
 			source.buffer = instrumentsToPlay[i].buffer;
 			source.connect(audioContext.destination);
 			source.start(time);
+		}
+	};
+
+
+	this.fireStepEvents = function(step) {
+		var instrumentsToPlay = stepMatrix[step].instruments
+		
+		for(var i = instrumentsToPlay.length - 1; i >= 0; i--) {
+			var event = new CustomEvent('drumFire', {
+				detail: {name: instrumentsToPlay[i].name},
+				bubbles: false,
+				cancelable: true
+			});
+
+			document.dispatchEvent(event);
 		}
 	};
 
