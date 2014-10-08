@@ -8,8 +8,8 @@ var Scheduler = function(options) {
 	var startTime;
 	var currentStep;
 	var tempo = 120.0;
-	var lookahead = 25.0; //(in milliseconds)
-	var scheduleAheadTime = 0.1; // How far ahead to schedule audio (sec)
+	var lookahead = 25.0; //in milliseconds
+	var scheduleAheadTime = 0.1;
 								// This is calculated from lookahead, and overlaps 
 								// with next interval (in case the timer is late)
 	var nextStepTime = 0.0;	 // when the next note is due.

@@ -10,7 +10,7 @@ var Sampler = function(options) {
 
 	this.playSoundsAt = function(step, time) {
 		var instrumentsToPlay = stepMatrix[step].instruments
-		
+
 		for(var i = instrumentsToPlay.length - 1; i >= 0; i--) {
 			var source = audioContext.createBufferSource();
 			source.buffer = instrumentsToPlay[i].buffer;
@@ -22,7 +22,7 @@ var Sampler = function(options) {
 
 	this.fireStepEvents = function(step) {
 		var instrumentsToPlay = stepMatrix[step].instruments
-		
+
 		for(var i = instrumentsToPlay.length - 1; i >= 0; i--) {
 			var event = new CustomEvent('drumFire', {
 				detail: {name: instrumentsToPlay[i].name},
@@ -37,34 +37,34 @@ var Sampler = function(options) {
 
 	this.toggleSoundInMatrix = function(step, instrument) {
 		var toPlay = stepMatrix[step].instruments;
-		
+
 		for(i in toPlay) {
 			if(toPlay[i].name == instrument.name) return toPlay.splice(i, 1);
 		}
 		toPlay.push(instrument);
 	};
 
-
-
 	var bufferInstruments = function() {
-		var setBuffer = function(instrument, path) {
-			var bufferSound = function(event) {
-				var request = event.target;
-				instrument.buffer = audioContext.createBuffer(request.response, false);
-			};
-
-			var request = new XMLHttpRequest();
-			request.open('GET', path, true);
-			request.responseType = 'arraybuffer';
-			request.addEventListener('load', bufferSound, false);
-			request.send();
-		};
-
 		for(var i = instruments.length - 1; i >= 0; i--) {
 			var instrument = instruments[i];
-			setBuffer(instrument, instrument.path);
+			bufferInstrument(instrument, instrument.path);
 		}
 	};
+
+	var bufferInstrument = function(instrument, path) {
+		var bufferSound = function(event) {
+      audioContext.decodeAudioData(event.target.response, function(buffer) {
+        instrument.buffer = buffer;
+      });
+		};
+
+		var request = new XMLHttpRequest();
+		request.open('GET', path, true);
+		request.responseType = 'arraybuffer';
+		request.addEventListener('load', bufferSound, false);
+		request.send();
+	};
+
 
 
 	var initStepMatrix = function() {

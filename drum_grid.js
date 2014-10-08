@@ -21,7 +21,7 @@ var DrumGrid = function(options) {
 	this.createDrumGrid = function() {
 		for(var i = 0; i < instruments.length; i++) {
 			var row = document.querySelector("table").insertRow(-1);
-		
+
 			var instrument = instruments[i].name;
 			var cell = row.insertCell(-1);
 			cell.innerHTML = instrument;
