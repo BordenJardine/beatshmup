@@ -87,3 +87,5 @@ var Scheduler = function(options) {
 		timerID = window.setTimeout( schedule, lookahead );
 	}
 };
+
+module.exports = Scheduler;

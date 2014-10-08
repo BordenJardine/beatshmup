@@ -39,22 +39,24 @@ var DrumGrid = function(options) {
 			}
 		}
 	};
-
-
-	var toggleClass = function(targetElement, cssClass) {
-		(targetElement.className.indexOf(cssClass) != -1)
-			? removeClass(targetElement, cssClass)
-			: addClass(targetElement, cssClass);
-	}; 
-
-
-	var removeClass = function(targetElement, cssClass) {
-		var removal = new RegExp('\s*' + cssClass + '\s*', 'g');
-		targetElement.className = targetElement.className.replace(removal, '');
-	};
-
-
-	var addClass = function(targetElement, cssClass) {
-		targetElement.className += ' ' + cssClass;
-	};
 };
+
+
+var toggleClass = function(targetElement, cssClass) {
+	(targetElement.className.indexOf(cssClass) != -1)
+		? removeClass(targetElement, cssClass)
+		: addClass(targetElement, cssClass);
+}; 
+
+
+var removeClass = function(targetElement, cssClass) {
+	var removal = new RegExp('\s*' + cssClass + '\s*', 'g');
+	targetElement.className = targetElement.className.replace(removal, '');
+};
+
+
+var addClass = function(targetElement, cssClass) {
+	targetElement.className += ' ' + cssClass;
+};
+
+module.exports = DrumGrid;

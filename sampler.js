@@ -66,7 +66,6 @@ var Sampler = function(options) {
 	};
 
 
-
 	var initStepMatrix = function() {
 		for(var i = steps; i >= 0; i--) stepMatrix.push({instruments: []});
 	};
@@ -75,3 +74,5 @@ var Sampler = function(options) {
 	initStepMatrix();
 	bufferInstruments();
 };
+
+module.exports = Sampler;

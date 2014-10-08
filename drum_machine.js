@@ -1,3 +1,7 @@
+var Sampler = require('./sampler.js');
+var DrumGrid = require('./drum_grid.js');
+var Scheduler = require('./scheduler.js');
+
 window.requestAnimFrame = (function() {
     return  window.requestAnimationFrame ||
     window.webkitRequestAnimationFrame ||
