@@ -4,4 +4,4 @@ Uses canvas and the web audio api.
 
 Raw javascript plus impactjs for the gamey parts.
 
-Check it out [here](bordenjardine.github.io/beatshmup)
+Check it out [here](http://bordenjardine.github.io/beatshmup)
